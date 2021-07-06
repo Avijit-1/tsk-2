@@ -2,10 +2,9 @@ const  express  = require("express")
 const sql=require("mysql")
 const encrypt=require("bcryptjs")
 
-const db=sql.createConnection({
     host:process.env.HOST,
     user:process.env.USER,
-    password:"",
+    password: process.env.PASS,
     database:process.env.DATABASE
 })
 
@@ -82,21 +81,7 @@ else{
     
 }
 function login(req,res){
-    const db=sql.createConnection({
-        host:process.env.HOST,
-        user:process.env.USER,
-        password:"",
-        database:process.env.DATABASE
-    })
     
-    db.connect((error)=>{
-    if (error){
-        console.log(error)
-    }
-    else{
-        console.log("mysql connected...")
-    }
-    })
     const { luser, lpass}=req.body
     
     db.query("SELECT * FROM users WHERE name=?",[luser],async(error,result)=>{
