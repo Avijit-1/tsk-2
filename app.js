@@ -2,7 +2,7 @@ const express=require("express")
 const sql=require("mysql")
 const dotenv=require("dotenv")
 const path=require("path")
-const port=8000
+const port=process.env.PORT || 3000
 const app =express()
 const public=path.join(__dirname,"./sources")
 
